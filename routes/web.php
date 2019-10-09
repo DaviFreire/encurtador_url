@@ -17,5 +17,15 @@ $router->get('/', function () use ($router) {
 
 
 $router->group(['prefix' => 'api', ], function () use ($router) {
+    $router->post('registrar',  ['uses' => 'UserController@store']);
     $router->post('login',  ['uses' => 'AuthController@postLogin']);
+    
+    $router->group(["middleware" => "auth"], function () use ($router) {
+        $router->put('user/{id}',  ['uses' => 'UserController@update']);
+        $router->delete('user/{id}',  ['uses' => 'UserController@destroy']);
+
+        $router->post('url/encurtar',  ['uses' => 'UrlController@store']);
+        $router->get('url/info',  ['uses' => 'UrlController@show']);
+        $router->get('url/user/{id}',  ['uses' => 'UrlController@showUser']);
+    });
 });

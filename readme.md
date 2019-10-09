@@ -1,21 +1,49 @@
-# Lumen PHP Framework
+# Encurtador URL
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## Iniciando
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+```bash
+$ https://github.com/DaviFreire/encurtador_url.git
+$ cd encurtador_url
+$ docker-compose up -d
+```
 
-## Official Documentation
+Acompanhar a instalação das dependências do composer através do comando abaixo:
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+```bash
+$ docker-compose logs -f app
+```
 
-## Security Vulnerabilities
+## Rotas:
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+| POST   | localhost/api/registrar  - Cria novo usuário
+Ex. parâmetros:
+    {
+        "email": "davi.freire@email.com.br",
+        "password": "123456"
+    }
 
-## License
+| POST   | localhost/api/login - Faz login e gera um token JWT
+Ex. parâmetros:
+    {
+        "email": "davi.freire@email.com.br",
+        "password": "123456"
+    }
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+É necessário passar o token de login para as rotas abaixo:
+| POST   | localhost/api/url/encurtar    
+Ex. parâmetros:
+    {
+        "url": "https://www.uol.com.br/"
+    }
+
+| GET    | localhost/api/url/info 
+Ex. parâmetros:
+    {
+        "url": "localhost/123"
+    }
+    
+| GET    | localhost/api/url/user/{$id}  
+
+
+
