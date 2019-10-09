@@ -2,17 +2,16 @@
 
 _="$(dirname "$0")"
 
-$_/user_setup www-data
-$_/composer
-
 # Create .env
 cp .env.example .env
 
+$_/user_setup www-data
+$_/composer
+
 echo "==> Running migration"
 php artisan migrate
-
-echo "==> Installing passport"
-php artisan passport:install
+php artisan key:generate
+php artisan jwt:secret
 
 # Start php-fpm
 echo "===> Initializing php-fpm"
