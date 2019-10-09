@@ -10,8 +10,7 @@ $_/composer
 
 echo "==> Running migration"
 php artisan migrate
-php artisan key:generate
-php artisan jwt:secret
+php artisan jwt:secret -f
 
 # Start php-fpm
 echo "===> Initializing php-fpm"
